@@ -1,11 +1,12 @@
 import React from 'react';
 import ClientList from './components/ClientList';
 import ClientForm from './components/ClientForm';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <h1>Client Management</h1>
+      <h1 className='title'>Client Management</h1>
       <ClientForm />
       <ClientList />
     </div>
