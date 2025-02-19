@@ -47,5 +47,10 @@ public class EmployeeController {
     public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
         return employeeService.deleteEmployee(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<Employee>> searchEmployees(@RequestParam String name) {
+        List<Employee> employees = employeeService.searchEmployeesByName(name);
+        return ResponseEntity.ok(employees);
+    }
 }
 

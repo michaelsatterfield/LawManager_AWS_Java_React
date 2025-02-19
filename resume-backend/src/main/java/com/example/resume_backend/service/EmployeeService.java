@@ -44,4 +44,8 @@ public class EmployeeService {
         }
         return false;
     }
+    public List<Employee> searchEmployeesByName(String name) {
+        return employeeRepository.findByNameContainingIgnoreCase(name);
+    } 
+
 }
