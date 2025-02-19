@@ -62,7 +62,7 @@ const ClientList = () => {
       <ul>
         {clients.map(emp => (
           <li key={emp.id}>
-            {emp.name} - {emp.position} - ${emp.salary}
+            {emp.firstName} - {emp.lastName} - ${emp.phone} - {emp.email} - {emp.address} - {emp.city} - {emp.state} - {emp.dateOfBirth} - {emp.contactType} - {emp.leadSource} - {emp.referredBy}
             <button onClick={() => handleDelete(emp.id)}>Delete</button>
           </li>
         ))}
