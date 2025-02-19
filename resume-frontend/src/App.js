@@ -1,13 +1,13 @@
 import React from 'react';
-import EmployeeList from './components/EmployeeList';
-import EmployeeForm from './components/EmployeeForm';
+import ClientList from './components/ClientList';
+import ClientForm from './components/ClientForm';
 
 function App() {
   return (
     <div className="App">
-      <h1>Employee Management</h1>
-      <EmployeeForm />
-      <EmployeeList />
+      <h1>Client Management</h1>
+      <ClientForm />
+      <ClientList />
     </div>
   );
 }
