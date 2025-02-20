@@ -53,7 +53,7 @@ const ClientForm = ({ refreshClients}) => {
 
 
   return (
-    <div className="container">
+    <div className="client-form-container">
       <div className="form-box">
         <h2>Add Client</h2>
         <form onSubmit={handleSubmit}>

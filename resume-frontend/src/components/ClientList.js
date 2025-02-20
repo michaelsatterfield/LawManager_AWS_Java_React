@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import clientsService from '../services/clientsService';
+import './css/ClientList.css';
 
 const ClientList = () => {
   const [clients, setClients] = useState([]);
@@ -46,8 +47,8 @@ const ClientList = () => {
   };
 
   return (
-    <div>
-      <h2>client List</h2>
+    <div className='client-list'>
+      <h2>Client List</h2>
 
       {/* Search Input */}
       <input 
@@ -58,12 +59,22 @@ const ClientList = () => {
       />
       <button onClick={handleSearch}>Search</button>
 
-      {/* client Table */}
+      {/* Client Table */}
       <ul>
         {clients.map(emp => (
-          <li key={emp.id}>
-            {emp.firstName} - {emp.lastName} - ${emp.phone} - {emp.email} - {emp.address} - {emp.city} - {emp.state} - {emp.dateOfBirth} - {emp.contactType} - {emp.leadSource} - {emp.referredBy}
-            <button onClick={() => handleDelete(emp.id)}>Delete</button>
+          <li key={emp.id} className='client-item'>
+            <div className='client-detail'>First Name: {emp.firstName}</div>
+            <div className='client-detail'>Last Name: {emp.lastName}</div>
+            <div className='client-detail'>Phone: {emp.phone}</div>
+            <div className='client-detail'>Email: {emp.email}</div>
+            <div className='client-detail'>Address: {emp.address}</div>
+            <div className='client-detail'>City: {emp.city}</div>
+            <div className='client-detail'>State: {emp.state}</div>
+            <div className='client-detail'>Date of Birth: {emp.dateOfBirth}</div>
+            <div className='client-detail'>Contact Type: {emp.contactType}</div>
+            <div className='client-detail'>Lead Source: {emp.leadSource}</div>
+            <div className='client-detail'>Referred By: {emp.referredBy}</div>
+            <button className='delete-button' onClick={() => handleDelete(emp.id)}>Delete</button>
           </li>
         ))}
       </ul>

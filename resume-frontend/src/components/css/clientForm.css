@@ -1,4 +1,4 @@
-.container {
+.client-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
-  
+
   button {
     width: 100%;
     padding: 10px;
@@ -41,4 +41,26 @@
   button:hover {
     background: #0056b3;
   }
+
+  /* Client List */
+   .client-list input, .client-list button {
+    width: 40% !important;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+   .client-list button {
+    width: 12% !important;
+    padding: 10px;
+    margin: 0px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .delete-button {
+    background: #dc3545;
+  }
+  
   
