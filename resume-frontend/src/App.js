@@ -1,16 +1,20 @@
 import React from 'react';
-import ClientList from './components/ClientList';
-import ClientForm from './components/ClientForm';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ClientHomePage from './components/clients/ClientHomePage';
+import ClientDetailPage from './components/clients/ClientDetailPage';
+import CaseDetailPage from './components/cases/CaseDetailPage';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <h1 className='title'>Client Management</h1>
-      <ClientForm />
-      <ClientList />
-    </div>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<ClientHomePage />} />
+                <Route path="/clients/:clientId" element={<ClientDetailPage />} />
+                <Route path="/cases/:caseId" element={<CaseDetailPage />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

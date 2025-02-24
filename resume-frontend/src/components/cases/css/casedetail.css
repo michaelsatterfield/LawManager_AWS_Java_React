@@ -1,0 +1,22 @@
+.case-detail-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.case-info {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 12px;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import clientsService from '../services/clientsService';
+import clientsService from '../../services/clientsService';
 import './css/clientForm.css';
 
-const ClientForm = ({ refreshClients}) => {
+const ClientAddForm = ({ fetchClients}) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -49,6 +49,7 @@ const ClientForm = ({ refreshClients}) => {
     } catch (error) {
       console.error('Error adding client:', error);
     }
+    await fetchClients();
   };
 
 
@@ -68,11 +69,11 @@ const ClientForm = ({ refreshClients}) => {
           <input type="text" name="contactType" placeholder="Contact Type" value={formData.contactType} onChange={handleChange} />
           <input type="text" name="leadSource" placeholder="Lead Source" value={formData.leadSource} onChange={handleChange} />
           <input type="text" name="referredBy" placeholder="Referred By" value={formData.referredBy} onChange={handleChange} />
-          <button type="submit">Add Client</button>
+          <button className="addButton" type="submit">Add Client</button>
         </form>
       </div>
     </div>
   );
 };
 
-export default ClientForm;
+export default ClientAddForm;

@@ -11,5 +11,7 @@ import org.springframework.stereotype.Repository;
 //JpaRepository provides several methods, like findAll(), findById(), save(), and deleteById(), which we will use in the service.
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-    List<Client> findByNameContainingIgnoreCase(String name);
+
+   // Search for clients by matching query in either first or last name
+   List<Client> findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(String firstName, String lastName);
 }

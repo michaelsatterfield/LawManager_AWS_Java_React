@@ -2,12 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full viewport height */
+    height: 71vh; /* Full viewport height */
   }
   
   .form-box {
     width: 400px; /* Adjust width as needed */
     padding: 20px;
+    padding-right: 46px;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
@@ -29,7 +30,7 @@
   }
 
   button {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px;
     background: #007bff;
     color: white;
@@ -37,22 +38,26 @@
     border-radius: 5px;
     cursor: pointer;
   }
+
+  .addButton {
+    width: 100%;
+  }
   
   button:hover {
     background: #0056b3;
   }
 
-  /* Client List */
+ /* // Client List */
    .client-list input, .client-list button {
     width: 40% !important;
-    padding: 10px;
-    margin: 5px 0;
+    padding: 12px;
+    /* margin: 5px 0; */
     border: 1px solid #ccc;
     border-radius: 5px;
   }
 
    .client-list button {
-    width: 12% !important;
+    width: 88% !important;
     padding: 10px;
     margin: 0px 12px;
     border: 1px solid #ccc;

@@ -44,8 +44,14 @@ public class ClientService {
         }
         return false;
     }
-    public List<Client> searchClientsByName(String name) {
-        return ClientRepository.findByNameContainingIgnoreCase(name);
-    } 
+ 
+    public List<Client> searchClientsByName(String query) {
+        if (query != null) {
+            // Search by first name or last name
+            return ClientRepository.findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(query, query);
+        } else {
+            return ClientRepository.findAll(); // Return all clients if no search query is provided
+        }
+    }
 
 }

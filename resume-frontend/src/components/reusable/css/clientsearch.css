@@ -1,0 +1,28 @@
+.client-search {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 13%
+  }
+  
+  .client-search input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 75%;
+  }
+  
+  .client-search button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .client-search button:hover {
+    background-color: #45a049;
+  }
+  

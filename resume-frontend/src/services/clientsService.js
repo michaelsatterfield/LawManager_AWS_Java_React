@@ -14,7 +14,7 @@ const clientsService = {
   },
 
   search: async (query) => {
-    const response = await apiClient.get(`/clients/search`, { params: { name: query } });
+    const response = await apiClient.get(`/clients/search`, { params: { query } });  // Send query as a single parameter
     return response.data;
   },
 
