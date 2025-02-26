@@ -67,7 +67,8 @@ const ClientDetailPage = () => {
                     <ul>
                         {cases.map(caseItem => (
                             <li key={caseItem.id}>
-                                <Link to={`/cases/${caseItem.id}`}>{caseItem.title}</Link> - <span>{caseItem.status}</span>
+                                <p>Case Type: <span><em>{caseItem.caseType}</em></span></p>
+                                <Link to={`/cases/${caseItem.id}`}>{caseItem.caseType}{caseItem.caseName}</Link> - <span>{caseItem.caseDescription}</span>
                             </li>
                         ))}
                     </ul>
