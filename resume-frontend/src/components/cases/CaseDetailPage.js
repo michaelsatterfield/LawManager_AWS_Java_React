@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import casesService from '../../services/casesServices';
 import './css/casedetail.css';
 
 // Dummy data for cases

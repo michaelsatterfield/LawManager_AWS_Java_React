@@ -1,32 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import clientsService from '../../services/clientsService';
+import casesService from '../../services/casesServices';
 import './css/clientdetail.css';
 
-œ
-const dummyClients = [
-    { id: 1, name: "John Doe", email: "john@example.com", phone: "123-456-7890" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", phone: "987-654-3210" }
-];
-
-const dummyCases = [
-    { id: 101, clientId: 1, title: "Immigration Appeal", status: "Open" },
-    { id: 102, clientId: 1, title: "Green Card Renewal", status: "Closed" },
-    { id: 201, clientId: 2, title: "Work Visa Application", status: "Pending" }
-];
 
 const ClientDetailPage = () => {
-    const { clientId } = useParams();
+    const { clientId } = useParams(); //takes the id from the url rather that storing it in a state
     const [client, setClient] = useState(null);
     const [cases, setCases] = useState([]);
 
-    useEffect(() => {
-        // Fetch client details
-        const foundClient = dummyClients.find(client => client.id === parseInt(clientId));
-        setClient(foundClient);
+   const [loading, setLoading] = useState(false);
 
-        // Fetch cases for the client
-        const clientCases = dummyCases.filter(caseItem => caseItem.clientId === parseInt(clientId));
-        setCases(clientCases);
+   const fetchClientData = async () => {
+    console.log(clientId);
+        try {
+            const data = await clientsService.getById(clientId);
+            setClient(data);
+        } catch (error) {
+            console.error('Error fetching clients:', error);
+        } finally {
+            setLoading(false);
+        }
+       // setCases(clientCases);
+    }
+    
+    console.log(client);
+    const fetchCases = async () => {
+        setLoading(true);
+        try {
+            const data = await casesService.getByClientId(clientId);
+            console.log("cases data",data);
+            
+            setCases(data);
+        } catch (error) {
+            console.error('Error fetching cases:', error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchClientData();
+        fetchCases();
     }, [clientId]);
 
     if (!client) {
@@ -38,6 +55,7 @@ const ClientDetailPage = () => {
             <nav className="navbar">
                 <h1>Client Details</h1>
             </nav>
+            
             <div className="client-info">
                 <h2>{client.name}</h2>
                 <p><strong>Email:</strong> {client.email}</p>

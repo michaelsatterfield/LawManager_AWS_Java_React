@@ -1,6 +1,8 @@
 package com.example.resume_backend.controller;
 
+import com.example.resume_backend.model.Cases;
 import com.example.resume_backend.model.Client;
+import com.example.resume_backend.service.CaseService;
 import com.example.resume_backend.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,10 @@ public class ClientController {
     @Autowired
     private ClientService ClientService;
 
+     @Autowired
+    private CaseService caseService;
+
+
     @GetMapping
     public ResponseEntity<List<Client>> getAllClients() {
         return ResponseEntity.ok(ClientService.getAllClients());
@@ -30,6 +36,16 @@ public class ClientController {
     public ResponseEntity<Client> getClientById(@PathVariable Long id) {
         Optional<Client> Client = ClientService.getClientById(id);
         return Client.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+        // Fetch all cases for a specific client
+    @GetMapping("/{clientId}/cases")
+    public ResponseEntity<List<Cases>> getCasesForClient(@PathVariable Long clientId) {
+        List<Cases> cases = caseService.getCasesForClient(clientId);
+        if (cases.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(cases);
     }
 
     @PostMapping

@@ -1,9 +1,12 @@
 package com.example.resume_backend.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.Data;
@@ -37,8 +40,11 @@ public class Client {
     private String leadSource;
     private String referredBy;
 
-    
-    // Getters and setters
+        // Relationship with Cases
+     //   @OneToMany(mappedBy = "client") // "client" is the field in Cases
+    //    private List<Cases> cases; // List of cases associated with this client
+
+    // Getters and setters not needed with Lombok
 //     public Long getId() {
 //         return id;
 //     }

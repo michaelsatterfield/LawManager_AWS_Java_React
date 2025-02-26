@@ -1,10 +1,12 @@
 import React from 'react';
 
 const ClientItem = ({ client, onDelete }) => {
+  console.log(client);
+  
   return (
     <tr className='client-item'>
-      <td>{client.firstName}</td>
-      <td>{client.lastName}</td>
+      <td><a href={`/clients/${client.id}`}>{client.firstName}</a></td>
+      <td><a href={`/clients/${client.id}`}>{client.lastName}</a></td>
       <td>{client.phone}</td>
       <td>{client.email}</td>
       {/* <td>{client.address}</td>
