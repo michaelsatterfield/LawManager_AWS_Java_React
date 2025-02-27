@@ -1,14 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ClientItem from '../reusable/ClientItem';
 import './css/ClientList.css';
 
-const ClientList = ({ clients, handleDelete }) => {
+const ClientList = ({ clients,selectedClients, setSelectedClients, handleSelectClient, handleDelete}) => {
+
+
+
+
   return (
     <div className="client-list">
-      <h2>Client List</h2>
       <table className="client-table">
         <thead>
           <tr>
+            <th>
+          {/* Select All Checkbox (Optional) */}
+          <input
+                type="checkbox"
+                onChange={() => {
+                  if (selectedClients.length === clients.length) {
+                    setSelectedClients([]); // Deselect all if all are selected
+                  } else {
+                    setSelectedClients(clients.map((client) => client.id)); // Select all
+                  }
+                }}
+                checked={selectedClients.length === clients.length}
+              />
+              </th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Phone</th>
@@ -25,7 +42,13 @@ const ClientList = ({ clients, handleDelete }) => {
         </thead>
         <tbody>
           {clients.map((client) => (
-            <ClientItem key={client.id} client={client} onDelete={handleDelete} />
+            <ClientItem 
+            key={client.id} 
+            client={client} 
+            onDelete={handleDelete} 
+            isSelected={selectedClients.includes(client.id)}
+            onSelect={() => handleSelectClient(client.id)}
+            />
           ))}
         </tbody>
       </table>

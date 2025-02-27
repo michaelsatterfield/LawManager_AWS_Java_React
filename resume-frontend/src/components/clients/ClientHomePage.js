@@ -3,7 +3,9 @@ import ClientAddForm from './ClientAddForm';
 import clientsService from '../../services/clientsService';
 import ClientList from './ClientList';
 import ClientSearch from '../reusable/ClientSearch';
-import { Plus, X } from "lucide-react"; // Icons for better UI
+import Sidebar from '../reusable/Sidebar';
+import SubBanner from '../reusable/subBanner';
+import { Plus, X, UserPlus, Mail, Scale, Phone } from "lucide-react"; // Icons for better UI
 import './css/clientpage.css';
 
 const ClientHomePage = () => {
@@ -11,6 +13,7 @@ const ClientHomePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
+    const [selectedClients, setSelectedClients] = useState([]);
 
     const toggleForm = () => {
         setShowForm(!showForm);
@@ -29,6 +32,42 @@ const ClientHomePage = () => {
         }
     };
 
+    // Handle select/unselect logic
+    const handleSelectClient = (clientId) => {
+        setSelectedClients((prevSelected) => {
+            if (prevSelected.includes(clientId)) {
+                return prevSelected.filter((id) => id !== clientId); // Unselect client
+            } else {
+                return [...prevSelected, clientId]; // Select client
+            }
+        });
+    };
+
+    // You can use this selectedClients state for further actions, like sending emails.
+    const handleAction = () => {
+        console.log('Selected clients:', selectedClients);
+
+    
+        const selectedEmails = clients
+            .filter((client) => selectedClients.includes(client.id))
+            .map((client) => ({
+                email: client.email,
+                firstName: client.firstName,
+                lastName: client.lastName,
+                phone: client.phone
+            }));
+        // loop through selected clients and get their email addresses by id 
+
+        console.log('Selected client emails:', selectedEmails);
+        // If there are selected emails, open the user's email client
+        if (selectedEmails.length > 0) {
+            const mailtoLink = `mailto:${selectedEmails.map(emailObj => emailObj.email)
+                .join(',')}?subject=Getting in Touch&body=Hello ${selectedEmails.map(emailObj => emailObj.firstName).join(', ')}`;
+
+            // Open the default email client with the pre-filled email
+            window.location.href = mailtoLink;
+        }
+    };
     // Delete a client
     const handleDelete = async (id) => {
         if (window.confirm('Are you sure you want to delete this client?')) {
@@ -66,46 +105,69 @@ const ClientHomePage = () => {
     }, []);
 
     return (
-        <div className="client-page"> {/* Apply the client-page class */}
+        <div className="client-page"> 
+        {/* TODO: make this a separate component */}
             <nav className="navbar">
-                <h1>Client Management</h1>
-                <ClientSearch
-                        searchQuery={searchQuery}
-                        setSearchQuery={setSearchQuery}
-                        onSearch={handleSearch}  // Passing down search function to ClientSearch
-                        />
-            </nav>
-            <div className="client-container"> {/* Wrapper for side-by-side layout */}
 
-                {showForm && (
-                    <div className="client-add-form-container">
-                        <ClientAddForm 
-                        fetchClients={fetchClients}
-                        onClientAdded={() => setShowForm(false)}
-                        toggleForm={toggleForm}
-                         />
-                    </div>
-                )}
-                <div className="client-list-container"> {/* Client List will be here */}
-                <div className="client-header">
-                  {!showForm && (
-                    <button className="add-client-button" onClick={toggleForm}>
-                        <Plus size={18} /> Add Client
-                    </button>
-                )}
-                    {/* <ClientSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSearch={handleSearch} /> */}
-                 
+                <h1><Scale size={28}/>Law Firm Manage</h1>
+
+                <ClientSearch
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                    onSearch={handleSearch}  
+                />
+            </nav>
+               {/* Sidebar Navigation */}
+             <Sidebar />
+
+             <SubBanner title="Clients" />
+
+                <div className="client-container"> 
+                    {showForm && (
+                        <div className="client-add-form-container">
+                            <ClientAddForm
+                                fetchClients={fetchClients}
+                                onClientAdded={() => setShowForm(false)}
+                                toggleForm={toggleForm}
+                            />
                         </div>
+                    )}
+                <div className="client-list-container"> {/* Client List will be here */}
+            
                     {loading ? (
                         <div className="spinner"></div> // Render spinner while loading
                     ) : (
-                        <div className={`client-list-container ${showForm ? "shift-down" : ""}`}>
-                        <ClientList
-                            clients={clients}
-                            setClients={setClients}
-                            fetchClients={fetchClients}
-                            handleDelete={handleDelete}
-                        />
+                        <div className={`client-list-container contanier-1 ${showForm ? "shift-down" : ""}`}>
+                                    <div className="action-button-group">
+                        {!showForm && (
+                            <div className="client-header">
+                                <button className="add-client-button" onClick={toggleForm}>
+                                    <UserPlus size={18} /> Add Client
+                                </button>
+                                <button className="add-client-button" onClick={toggleForm}>
+                                    <UserPlus size={18} /> Edit Client
+                                </button>
+                                <button
+                                    style={{ backgroundColor: selectedClients.length > 0 ? "#21c97a" : "#b1ddb7" }} // Change button color based on selection
+                                    className="add-client-button"
+                                    onClick={handleAction}
+                                >
+                                    <Mail size={18} /> Email Client
+                                </button>
+                            </div>
+                        )}
+
+                    </div>
+                            <ClientList
+                                clients={clients}
+                                setClients={setClients}
+                                selectedClients={selectedClients}
+                                setSelectedClients={setSelectedClients}
+                                fetchClients={fetchClients}
+                                handleSelectClient={handleSelectClient}
+                                handleDelete={handleDelete}
+                                handleAction={handleAction}
+                            />
                         </div>
                     )}
                 </div>

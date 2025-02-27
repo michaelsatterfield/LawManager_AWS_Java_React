@@ -1,10 +1,17 @@
 import React from 'react';
 
-const ClientItem = ({ client, onDelete }) => {
+const ClientItem = ({ client, onDelete, isSelected, onSelect }) => {
   console.log(client);
   
   return (
     <tr className='client-item'>
+      <td>
+        <input
+          type="checkbox"
+          checked={isSelected}
+          onChange={onSelect} // Calls the onSelect function passed as a prop
+        />
+      </td>
       <td><a href={`/clients/${client.id}`}>{client.firstName}</a></td>
       <td><a href={`/clients/${client.id}`}>{client.lastName}</a></td>
       <td>{client.phone}</td>
