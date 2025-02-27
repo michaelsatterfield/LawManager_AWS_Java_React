@@ -1,8 +1,10 @@
 .client-search {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
-    margin-left: 13%
+    justify-content: end; /* Pushes items to the right */
+    width: 64%
+    /* margin-bottom: 20px; */
+    /* margin-left: 13% */
   }
   
   .client-search input {

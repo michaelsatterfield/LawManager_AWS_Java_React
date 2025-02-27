@@ -9,6 +9,7 @@
   left: 0;
   right: 0;
   z-index: 1000; /* Ensures it stays above other elements */
+  display: flex;
 }
 
 .client-page {
@@ -23,6 +24,7 @@
 .client-page h1 {
   font-size: 2rem;
   margin-bottom: 20px;
+  width: 32%;
 }
 
 .client-page .client-container {
@@ -35,4 +37,84 @@
 .client-page .client-list-container {
   flex: 1;
   margin-left: 20px;
+}
+
+
+/* add button */
+.client-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  margin-left: 1.2%;
+}
+
+.add-client-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.add-client-button:hover {
+  background-color: #8bb0d7;
+}
+
+.client-add-form-container {
+  width: 38%;
+  margin-bottom: 15px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-5px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+.client-list-container {
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.shift-down {
+  transform: translateY(100px); /* Moves down smoothly */
+  opacity: 0.8; /* Optional fade effect */
+}
+
+
+/* spinner */
+
+.spinner {
+  border: 8px dotted #f3f3f3; /* Light gray background */
+  border-top: 8px solid #3498db; /* Blue color for the spinning part */
+  border-radius: 50%; /* Makes it circular */
+  width: 12em; /* Size of the spinner */
+  height: 12em;
+  animation: spin 1.5s linear infinite; /* Speed and infinite spinning animation */
+  margin-left: 38%;
+  margin-top: 13%;
+}
+
+/* Define the keyframes for spinning */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

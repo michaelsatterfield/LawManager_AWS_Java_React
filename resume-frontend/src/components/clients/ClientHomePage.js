@@ -3,12 +3,18 @@ import ClientAddForm from './ClientAddForm';
 import clientsService from '../../services/clientsService';
 import ClientList from './ClientList';
 import ClientSearch from '../reusable/ClientSearch';
+import { Plus, X } from "lucide-react"; // Icons for better UI
 import './css/clientpage.css';
 
 const ClientHomePage = () => {
     const [clients, setClients] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+
+    const toggleForm = () => {
+        setShowForm(!showForm);
+    };
 
     // Fetch clients
     const fetchClients = async () => {
@@ -63,26 +69,44 @@ const ClientHomePage = () => {
         <div className="client-page"> {/* Apply the client-page class */}
             <nav className="navbar">
                 <h1>Client Management</h1>
-            </nav>
-            <div className="client-container"> {/* Wrapper for side-by-side layout */}
-                <div className="client-add-form-container">
-                    <ClientAddForm fetchClients={fetchClients} />
-                </div>
-                <div className="client-list-container"> {/* Client List will be here */}
-                    <ClientSearch
+                <ClientSearch
                         searchQuery={searchQuery}
                         setSearchQuery={setSearchQuery}
                         onSearch={handleSearch}  // Passing down search function to ClientSearch
-                    />
+                        />
+            </nav>
+            <div className="client-container"> {/* Wrapper for side-by-side layout */}
+
+                {showForm && (
+                    <div className="client-add-form-container">
+                        <ClientAddForm 
+                        fetchClients={fetchClients}
+                        onClientAdded={() => setShowForm(false)}
+                        toggleForm={toggleForm}
+                         />
+                    </div>
+                )}
+                <div className="client-list-container"> {/* Client List will be here */}
+                <div className="client-header">
+                  {!showForm && (
+                    <button className="add-client-button" onClick={toggleForm}>
+                        <Plus size={18} /> Add Client
+                    </button>
+                )}
+                    {/* <ClientSearch searchQuery={searchQuery} setSearchQuery={setSearchQuery} onSearch={handleSearch} /> */}
+                 
+                        </div>
                     {loading ? (
-                        <div className="spinner">Loading...</div> // Render spinner while loading
+                        <div className="spinner"></div> // Render spinner while loading
                     ) : (
-                        <ClientList 
-                            clients={clients} 
-                            setClients={setClients} 
-                            fetchClients={fetchClients} 
+                        <div className={`client-list-container ${showForm ? "shift-down" : ""}`}>
+                        <ClientList
+                            clients={clients}
+                            setClients={setClients}
+                            fetchClients={fetchClients}
                             handleDelete={handleDelete}
                         />
+                        </div>
                     )}
                 </div>
             </div>

@@ -39,9 +39,31 @@
     cursor: pointer;
   }
 
+  .form-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    padding: 10px;
+}
+
+  .addButton,
+  .cancelButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
   .addButton {
-    width: 100%;
-  }
+    /* width: 30%; */
+    background-color: #3a8be1;
+    color: white;
+}
+
+.cancelButton {
+    background-color: #d51e11;
+    color: white;
+}
   
   button:hover {
     background: #0056b3;
@@ -68,4 +90,13 @@
     background: #dc3545;
   }
   
+  /* error */
+  .input-group {
+    margin-bottom: 1rem;
+  }
   
+  .error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
