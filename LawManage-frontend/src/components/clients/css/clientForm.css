@@ -1,0 +1,104 @@
+.client-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 71vh; /* Full viewport height */
+  }
+  
+  .form-box {
+    width: 400px; /* Adjust width as needed */
+    padding: 20px;
+    padding-right: 46px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h2 {
+    text-align: center;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+ 
+  }
+
+  button {
+    /* width: 100%; */
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .form-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    padding: 10px;
+}
+
+  .addButton,
+  .cancelButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+  .addButton {
+    /* width: 30%; */
+    background-color: #3a8be1;
+    color: white;
+}
+
+.cancelButton {
+    background-color: #d51e11;
+    color: white;
+}
+  
+  button:hover {
+    background: #0056b3;
+  }
+
+ /* // Client List */
+   .client-list input, .client-list button {
+    width: 40% !important;
+    padding: 12px;
+    /* margin: 5px 0; */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+   .client-list button {
+    width: 88% !important;
+    padding: 10px;
+    margin: 0px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .delete-button {
+    background: #dc3545;
+  }
+  
+  /* error */
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }

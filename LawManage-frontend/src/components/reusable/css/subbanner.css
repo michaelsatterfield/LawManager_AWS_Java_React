@@ -1,0 +1,17 @@
+.sub-banner {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    margin-bottom: 20px;
+    margin-left: 7%;
+}
+
+.sub-banner h2 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #2e2e30;
+    text-align: left;
+    margin-left: 7%;
+}
