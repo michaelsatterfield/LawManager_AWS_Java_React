@@ -60,6 +60,8 @@ const ClientDetailPage = () => {
             
             <div className="client-info">
                 <h2>{client.name}</h2>
+                <p><strong>First Name:</strong> {client.firstName}</p>
+                <p><strong>Last Name:</strong> {client.lastName}</p>
                 <p><strong>Email:</strong> {client.email}</p>
                 <p><strong>Phone:</strong> {client.phone}</p>
             </div>

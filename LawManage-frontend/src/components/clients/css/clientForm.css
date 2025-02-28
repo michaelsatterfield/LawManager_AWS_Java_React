@@ -27,10 +27,12 @@
     margin: 5px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    color: rgb(255, 255, 255);
- 
   }
+  
+  .search-input input{
+    color: rgb(255, 255, 255);
 
+  }
   button {
     /* width: 100%; */
     padding: 10px;
