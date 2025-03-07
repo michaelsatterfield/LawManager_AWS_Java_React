@@ -145,6 +145,7 @@ const ClientHomePage = () => {
                                     <UserPlus size={18} /> Add Client
                                 </button>
                                 <button className="add-client-button" onClick={toggleForm}>
+                                    {/* TODO: setup client edit  */}
                                     <UserPlus size={18} /> Edit Client
                                 </button>
                                 <button
