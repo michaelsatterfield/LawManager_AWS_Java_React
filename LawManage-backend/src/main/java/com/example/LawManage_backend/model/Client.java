@@ -1,5 +1,6 @@
 package com.example.LawManage_backend.model;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -8,6 +9,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 // The Client class represents an entity in the database.
+@Entity
 @Table(name = "clients") // Renaming the database table
 @Data
 public class Client {
