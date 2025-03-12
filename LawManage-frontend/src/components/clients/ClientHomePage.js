@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ClientAddForm from './ClientAddForm';
+import ClientEditForm from './ClientEditForm';
 import clientsService from '../../services/clientsService';
 import ClientList from './ClientList';
 import ClientSearch from '../reusable/ClientSearch';
@@ -13,11 +14,13 @@ const ClientHomePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
+    const [showEditForm, setShowEditForm] = useState(false);
     const [selectedClients, setSelectedClients] = useState([]);
 
-    const toggleForm = () => {
-        setShowForm(!showForm);
-    };
+    const toggleForm = () => setShowForm((prev) => (setShowEditForm(false), !prev));
+
+
+const toggleEditForm = () => setShowEditForm((prev) => (setShowForm(false), !prev));
 
     // Fetch clients
     const fetchClients = async () => {
@@ -123,9 +126,19 @@ const ClientHomePage = () => {
              <SubBanner title="Clients" />
 
                 <div className="client-container"> 
-                    {showForm && (
+                    {showForm && !showEditForm && (
                         <div className="client-add-form-container">
                             <ClientAddForm
+                                fetchClients={fetchClients}
+                                onClientAdded={() => setShowForm(false)}
+                                toggleForm={toggleForm}
+                            />
+                        </div>
+                    )}
+
+                           {showEditForm && !showForm && (
+                        <div className="client-add-form-container">
+                            <ClientEditForm
                                 fetchClients={fetchClients}
                                 onClientAdded={() => setShowForm(false)}
                                 toggleForm={toggleForm}
@@ -144,7 +157,7 @@ const ClientHomePage = () => {
                                 <button className="add-client-button" onClick={toggleForm}>
                                     <UserPlus size={18} /> Add Client
                                 </button>
-                                <button className="add-client-button" onClick={toggleForm}>
+                                <button className="add-client-button" onClick={toggleEditForm}>
                                     {/* TODO: setup client edit  */}
                                     <UserPlus size={18} /> Edit Client
                                 </button>
