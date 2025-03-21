@@ -1,0 +1,58 @@
+.navbar h1 {
+    text-align: center;
+    margin-left: 10%;
+    font-weight: 900;
+}
+
+
+.client-detail-page {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 10em;
+}
+
+.client-info {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.client-cases ul {
+    list-style: none;
+    padding: 0;
+}
+
+.client-cases li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.client-cases li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 12px;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* spinner */
+
+.spinner {
+    border: 8px dotted #f3f3f3; /* Light gray background */
+    border-top: 8px solid #3498db; /* Blue color for the spinning part */
+    border-radius: 50%; /* Makes it circular */
+    width: 12em; /* Size of the spinner */
+    height: 12em;
+    animation: spin 1.5s linear infinite; /* Speed and infinite spinning animation */
+    margin-left: 38%;
+    margin-top: 13%;
+  }
