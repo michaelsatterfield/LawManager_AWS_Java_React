@@ -1,14 +1,14 @@
-
 package com.example.LawManage_backend.controller;
 
+import com.example.LawManage_backend.dto.LeadDTO;
 import com.example.LawManage_backend.service.GoogleAdsService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
-@RequestMapping("/api/google-ads")
 public class GoogleAdsController {
 
     private final GoogleAdsService googleAdsService;
@@ -17,16 +17,11 @@ public class GoogleAdsController {
         this.googleAdsService = googleAdsService;
     }
 
-    @GetMapping("/leads")
-    public List<Map<String, Object>> getLeads(@RequestParam long customerId) {
-        try {
-            return googleAdsService.getAllLeads(customerId);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to fetch leads: " + e.getMessage(), e);
-        }
+    @GetMapping("/api/google-ads/leads")
+    public List<LeadDTO> getLeads(@RequestParam long customerId) throws Exception {
+        return googleAdsService.getAllLeads(customerId);
     }
 }
-
 
 
 
