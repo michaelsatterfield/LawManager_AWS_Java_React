@@ -14,7 +14,7 @@ const ClientItem = ({ client, onDelete, isSelected, onSelect }) => {
       </td>
       <td><a href={`/clients/${client.id}`}>{client.firstName}</a></td>
       <td><a href={`/clients/${client.id}`}>{client.lastName}</a></td>
-      <td>{client.phone}</td>
+      <td>{client.phoneNumber ? client.phoneNumber : client.phone}</td>
       <td>{client.email}</td>
       {/* <td>{client.address}</td>
       <td>{client.city}</td>

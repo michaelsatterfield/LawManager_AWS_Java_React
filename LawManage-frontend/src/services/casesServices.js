@@ -3,7 +3,6 @@ import apiClient from './apiClient';
 const casesService = {
 
   getAll: async () => {
-    console.log(process.env.REACT_APP_API_URL);
     const response = await apiClient.get('/cases');
     return response.data;
   },

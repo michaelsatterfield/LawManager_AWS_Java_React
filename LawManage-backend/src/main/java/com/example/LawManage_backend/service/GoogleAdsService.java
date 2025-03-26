@@ -53,10 +53,12 @@ public class GoogleAdsService {
                             lead.setCreationDateTime(row.getLocalServicesLead().getCreationDateTime());
                             lead.setLocale(row.getLocalServicesLead().getLocale());
                             lead.setLeadCharged(row.getLocalServicesLead().getLeadCharged());
-
+                          
                             if (row.getLocalServicesLead().hasContactDetails()) {
                                 lead.setPhoneNumber(row.getLocalServicesLead().getContactDetails().getPhoneNumber());
                                 lead.setEmail(row.getLocalServicesLead().getContactDetails().getEmail());
+                                String[] parts = row.getLocalServicesLead().getResourceName().split("/");
+                                lead.setLeadId(parts[parts.length - 1]);
                             }
 
                             if (row.getLocalServicesLead().hasNote()) {

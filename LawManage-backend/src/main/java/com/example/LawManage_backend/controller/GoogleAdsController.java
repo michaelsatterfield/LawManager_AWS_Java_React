@@ -2,6 +2,8 @@ package com.example.LawManage_backend.controller;
 
 import com.example.LawManage_backend.dto.LeadDTO;
 import com.example.LawManage_backend.service.GoogleAdsService;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,9 +19,18 @@ public class GoogleAdsController {
         this.googleAdsService = googleAdsService;
     }
 
+    @Value("${google.ads.customerId}")
+    private String customerId;
+
+    // @GetMapping("/api/google-ads/leads")
+    // public List<LeadDTO> getLeads(@RequestParam long customerId) throws Exception {
+    //     return googleAdsService.getAllLeads(customerId);
+    // }
+
     @GetMapping("/api/google-ads/leads")
-    public List<LeadDTO> getLeads(@RequestParam long customerId) throws Exception {
-        return googleAdsService.getAllLeads(customerId);
+    public List<LeadDTO> getLeads(@RequestParam(required = false) Long customerId) throws Exception {
+        long effectiveCustomerId = (customerId != null) ? customerId : Long.parseLong(this.customerId);
+        return googleAdsService.getAllLeads(effectiveCustomerId);
     }
 }
 

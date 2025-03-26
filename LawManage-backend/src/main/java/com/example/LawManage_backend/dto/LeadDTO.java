@@ -10,6 +10,7 @@ public class LeadDTO {
     private String serviceId; // Maps to getServiceId()
     private String phoneNumber; // Extracted from contact_details
     private String email; // Extracted from contact_details
+    private String leadId; // Maps to getLeadType()
     private String leadType; // Maps to getLeadType()
     private String leadStatus; // Maps to getLeadStatus()
     private String creationDateTime; // Maps to getCreationDateTime()

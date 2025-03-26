@@ -17,13 +17,13 @@ const ClientList = ({ clients,selectedClients, setSelectedClients, handleSelectC
           <input
                 type="checkbox"
                 onChange={() => {
-                  if (selectedClients.length === clients.length) {
+                  if (selectedClients?.length === clients?.length) {
                     setSelectedClients([]); // Deselect all if all are selected
                   } else {
-                    setSelectedClients(clients.map((client) => client.id)); // Select all
+                    setSelectedClients(clients?.map((client) => client.id)); // Select all
                   }
                 }}
-                checked={selectedClients.length === clients.length}
+                checked={selectedClients?.length === clients?.length}
               />
               </th>
             <th>First Name</th>
@@ -46,7 +46,7 @@ const ClientList = ({ clients,selectedClients, setSelectedClients, handleSelectC
             key={client.id} 
             client={client} 
             onDelete={handleDelete} 
-            isSelected={selectedClients.includes(client.id)}
+            isSelected={selectedClients?.includes(client.id)}
             onSelect={() => handleSelectClient(client.id)}
             />
           ))}

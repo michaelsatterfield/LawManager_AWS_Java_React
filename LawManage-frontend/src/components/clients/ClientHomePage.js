@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ClientAddForm from './ClientAddForm';
 import ClientEditForm from './ClientEditForm';
 import clientsService from '../../services/clientsService';
+import leadService from '../../services/leadService'; //move to its own page
 import ClientList from './ClientList';
 import ClientSearch from '../reusable/ClientSearch';
 import Sidebar from '../reusable/Sidebar';
@@ -11,6 +12,7 @@ import './css/clientpage.css';
 
 const ClientHomePage = () => {
     const [clients, setClients] = useState([]);
+    const [leads, setLeads] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
@@ -34,6 +36,21 @@ const toggleEditForm = () => setShowEditForm((prev) => (setShowForm(false), !pre
             setLoading(false);
         }
     };
+    
+        // Fetch clients !MOVE to its own page
+        const fetchLeads = async () => {
+            setLoading(true);
+            try {
+                const data = await leadService.getAll();
+                setLeads(data);
+                console.log('Leads data:', data);
+                
+            } catch (error) {
+                console.error('Error fetching leads data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
 
     // Handle select/unselect logic
     const handleSelectClient = (clientId) => {
@@ -105,6 +122,7 @@ const toggleEditForm = () => setShowEditForm((prev) => (setShowForm(false), !pre
 
     useEffect(() => {
         fetchClients();
+        fetchLeads();
     }, []);
 
     return (
@@ -182,7 +200,15 @@ const toggleEditForm = () => setShowEditForm((prev) => (setShowForm(false), !pre
                                 handleDelete={handleDelete}
                                 handleAction={handleAction}
                             />
+                            {/* LEADS TEST  */}
+                            <ClientList
+                                clients={leads}
+                                setClients={setLeads}
+                                fetchClients={fetchLeads}
+                            />
+
                         </div>
+                        
                     )}
                 </div>
             </div>
